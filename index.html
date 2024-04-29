@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Validation</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        font-size: 62.5%;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        font-weight: 300;
+        color: #444;
+        line-height: 1.9;
+        background-color: #f0fbf2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .login-box {
+        border: solid rgba(0, 0, 0, 0.212) 0.1rem;
+        padding: 5rem;
+        border-radius: 1rem;
+        background-color: #f0fbf2;
+      }
+
+      p {
+        padding-bottom: 0.5rem;
+        padding-top: 1rem;
+        font-size: 1.8rem;
+        font-weight: 600;
+      }
+
+      select,
+      input {
+        border: 0.1rem;
+        padding: 1rem;
+        border-radius: 1rem;
+        margin-bottom: 1rem;
+        font-size: 1.6rem;
+      }
+
+      input::placeholder {
+        opacity: 0.4;
+      }
+
+      .login--inputs {
+        padding-left: 8rem;
+      }
+
+      .btn {
+        display: inline-block;
+        font-size: 2rem;
+        padding-right: 4rem;
+        padding-left: 4rem;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        margin-bottom: 4rem;
+        margin-top: 6rem;
+        margin-right: 4rem;
+        color: #d2f4d8;
+        font-weight: 600;
+        background-color: #40c057;
+        border-radius: 1rem;
+        border: 0;
+      }
+
+      .btn2--cancel {
+        background-color: orangered;
+      }
+
+      .btn:hover,
+      .btn2--cancel:hover {
+        cursor: pointer;
+        background-color: #3f834a;
+        color: #fff;
+        transition: all 0.5s;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-box">
+      <form id="myForm" class="login--box" onsubmit="return validateForm()">
+        <div class="login--inputs">
+          <p>Name</p>
+          <input class="name" type="text" placeholder="atleast 6-characters" />
+          <p>Roll No</p>
+          <input class="roll_no" type="number" placeholder="numeric" />
+          <p>Department</p>
+          <select id="department" name="department">
+            <option value="">--select--</option>
+            <option value="IT">Information Technology</option>
+            <option value="CE">Computer Engineering</option>
+            <option value="AI&DS">AIDS</option>
+            <option value="EnTC">EnTC</option>
+            <option value="electrical">Electrical</option>
+            <option value="instrumentation">Instrumentation</option>
+          </select>
+          <p>Email</p>
+          <input class="email" type="email" placeholder="name@domain.com" />
+          <p>Password</p>
+          <input
+            class="password"
+            type="password"
+            placeholder="atleast 6-characters"
+          />
+        </div>
+        <div class="btns">
+          <button type="submit" class="btn btn2--save">Enter</button>
+          <button type="reset" class="btn btn2--cancel">Cancel</button>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      function validateForm() {
+        var name = document.querySelector(".name").value.trim();
+        var password = document.querySelector(".password").value.trim();
+        var email = document.querySelector(".email").value.trim();
+        var roll_no = document.querySelector(".roll_no").value.trim();
+
+        // Name validation
+        if (name.length < 6 || !/^[a-zA-Z\s]+$/.test(name)) {
+          alert(
+            "Name should contain alphabets and the length should not be less than 6 characters."
+          );
+          return false;
+        }
+
+        // Password validation
+        if (password.length < 6) {
+          alert("Password should not be less than 6 characters length.");
+          return false;
+        }
+
+        if (Number(rollNo) < 0) {
+          alert("Roll number should not be negative.");
+          return false;
+        }
+
+        // Email validation
+        if (!/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(email)) {
+          alert("Email should follow the standard pattern (nams@dqxalliorq).");
+          return false;
+        }
+        return true; // Form submission allowed
+      }
+    </script>
+  </body>
+</html>
